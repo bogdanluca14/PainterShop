@@ -42,38 +42,4 @@ public class AudioManager : MonoBehaviour
         }
         catch { }
     }
-
-    // Porneste sunet dupa nume
-    /*
-    public void PlaySound(string input, float volume = 0.7f)
-    {
-        AudioClip crt = null;
-        switch (input)
-        {
-            case "hitGraph":
-                crt = othHit;
-                break;
-            case "hitObstacle":
-                crt = obsHit;
-                break;
-            case "finishLevel":
-                crt = lvlFinish;
-                break;
-            case "buttonClick":
-                crt = buttonClick;
-                break;
-            case "coinCollect":
-                crt = coinCollect;
-                break;
-        }
-
-        AudioSource audioSource = Instantiate(audioObject, Vector3.zero, Quaternion.identity);
-        audioSource.clip = crt;
-        audioSource.volume = volume;
-        audioSource.Play();
-
-        float clipLength = audioSource.clip.length;
-        Destroy(audioSource.gameObject, clipLength);
-    }
-    */
 }

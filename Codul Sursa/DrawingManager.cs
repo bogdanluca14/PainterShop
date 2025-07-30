@@ -1,24 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class DrawingManager : MonoBehaviour
 {
+    // Variabile locale
+
     private Animator anim;
 
+    // Initializare
     private void Start()
     {
-        anim=GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
+    // Mergem catre panza
     public void OpenDrawing()
     {
         anim.enabled = true;
         anim.Play("OpenDrawing", 0, 0f);
-        
     }
 
+    // Plecam dinspre panza
     public void CloseDrawing()
     {
         anim.Play("CloseDrawing", 0, 0f);
@@ -28,6 +30,5 @@ public class DrawingManager : MonoBehaviour
     IEnumerator OnCloseDrawing()
     {
         yield return AnimationHandler.WaitForStateEnd(anim, "CloseDrawing");
-        PlayerMovement.canInteract = true;
     }
 }
