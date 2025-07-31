@@ -153,4 +153,9 @@ public class DrawingCanvas : MonoBehaviour
     {
         return drawingTexture;
     }
+
+    public void QuitApp()
+    {
+        Application.Quit();
+    }
 }
