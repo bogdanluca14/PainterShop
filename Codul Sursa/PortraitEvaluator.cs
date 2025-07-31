@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class PortraitEvaluatorOptimized : MonoBehaviour
+public class PortraitEvaluator : MonoBehaviour
 {
+    // Variabile globale
+
     public DrawingCanvas drawingCanvas;
     public Texture2D maskTexture;
-    public Text resultText;
 
     public byte alphaThreshold = 128;
     public float gaussianBlurRadius = 1.5f;
@@ -31,6 +32,11 @@ public class PortraitEvaluatorOptimized : MonoBehaviour
     public float minCoverageLim = 0.15f;
     public float fragmentationPen = 0.7f;
     public float fillRatioPen = 0.8f;
+
+    public TextMeshProUGUI scoreText;
+    public Animator scoreAnim;
+
+    // Structuri locale
 
     private struct EvalMetrics
     {
@@ -57,6 +63,18 @@ public class PortraitEvaluatorOptimized : MonoBehaviour
         public float[] moments;
     }
 
+    // Afisam scorul printr-un pop-up
+    public void ShowScore(float rawScore)
+    {
+        float score = Mathf.Min(rawScore, 300f) / 30f;
+        if (score >= 10f)
+            scoreText.text = "10";
+        else
+            scoreText.text = score.ToString("F2");
+        scoreAnim.enabled = true;
+        scoreAnim.Play("ShowScore", 0, 0f);
+    }
+
     // Evaluam portretul
     public void Evaluate()
     {
@@ -76,18 +94,20 @@ public class PortraitEvaluatorOptimized : MonoBehaviour
         if (DetectFace(metrics, processedData))
         {
             float faceScore = Mathf.Max(5f, 20f / metrics.areaRatio);
-            resultText.text = $"Scor: {faceScore:F1}% (Fata detectata)";
+            Debug.Log($"Scor: {faceScore:F1}% (Fata detectata)");
+            ShowScore(faceScore);
             return;
         }
 
         float finalScore = CalculateFinalScore(metrics, processedData);
-        resultText.text = $"Scor: {finalScore:F1}%";
+        Debug.Log($"Scor: {finalScore:F1}%");
+        ShowScore(finalScore);
     }
 
     // Validarea pozei de pe care se va efectua portretul
     private bool ValidateInput()
     {
-        if (drawingCanvas == null || maskTexture == null || resultText == null)
+        if (drawingCanvas == null || maskTexture == null)
         {
             return false;
         }
