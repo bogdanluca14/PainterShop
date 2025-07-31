@@ -55,8 +55,9 @@ Este practic un ghid mereu la îndemână, care ajută utilizatorul să corectez
 
 - **Unity** – motorul grafic și platforma de dezvoltare,
 - **C#** – limbajul principal de programare,
-- **Algoritmi de procesare a imaginilor** – pentru evaluare (comparare matricială, binarizare, scoruri de similaritate),
-- **Photoshop** - crearea și editarea unor imagini create de inteligența artificială.
+- **Algoritmi binari de procesare a imaginilor** – pentru evaluare (comparare matricială, scoruri de similaritate),
+- **Photoshop** - crearea și editarea unor imagini create de inteligența artificială,
+- **ThisPersonDoesntExist** - importarea unor imagini cu oameni care nu există, fiind generate de inteligența artificială.
 
 ---
 
